@@ -13,9 +13,12 @@ describe('errorCopy', () => {
 })
 
 describe('html resources', () => {
-  it('splash mentions Saddle and unofficial', () => {
+  it('splash mentions Saddle and follows color scheme', () => {
     const html = readFileSync(join('resources', 'splash.html'), 'utf8')
     expect(html).toContain('正在启动 Saddle')
-    expect(html).toMatch(/unofficial/i)
+    expect(html).toContain('prefers-color-scheme')
+    expect(html).not.toMatch(/unofficial/i)
+    expect(html).toContain('#f7f5f2')
+    expect(html).toContain('#1c1917')
   })
 })
