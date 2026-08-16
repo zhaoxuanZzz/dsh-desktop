@@ -8,7 +8,8 @@ Unofficial desktop shell for [DeepSeek Harness](https://github.com/deepseek-ai/d
 git submodule update --init
 pnpm install
 # optional: build dsh once so pnpm dev can spawn apps/cli/lib/bin.js
-pnpm --dir vendor/deepseek-harness install && pnpm --dir vendor/deepseek-harness run build
+# CI=true skips dsh lefthook; it cannot run inside this git submodule.
+CI=true pnpm --dir vendor/deepseek-harness install && CI=true pnpm --dir vendor/deepseek-harness run build
 pnpm test
 pnpm dev
 ```
