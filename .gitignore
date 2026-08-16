@@ -5,3 +5,4 @@ dist-bundle/
 *.log
 .DS_Store
 resources/icon.png
+.superpowers/
