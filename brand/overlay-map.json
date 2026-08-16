@@ -61,6 +61,11 @@
       "to": "packages/client/ui-settings-general/src/client/locales.ts",
       "find": "'general.nav': 'General',",
       "with": "'general.nav': 'General',\n  'about': 'Saddle is based on DeepSeek Harness.',"
+    },
+    {
+      "to": "packages/client/ui-settings-general/tests/components.client.spec.tsx",
+      "find": "const props: GeneralSectionComponentProps = { ...kit, renderSlot, close: vi.fn() }",
+      "with": "const props: GeneralSectionComponentProps = { ...kit, renderSlot, close: vi.fn(), t }"
     }
   ]
 }

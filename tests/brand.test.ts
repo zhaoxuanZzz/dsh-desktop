@@ -49,6 +49,9 @@ describe('brand materials', () => {
     expect(withs).toContain('You are an AI agent running in Saddle.')
     expect(withs.some(w => w.includes('Saddle desktop app'))).toBe(true)
     expect(withs).toContain('fill="#a8a29e"')
+    expect(withs).toContain(
+      'const props: GeneralSectionComponentProps = { ...kit, renderSlot, close: vi.fn(), t }',
+    )
   })
 
   it('overlay-map targets exist when the submodule is present', () => {
