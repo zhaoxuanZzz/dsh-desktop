@@ -1,0 +1,32 @@
+appId: app.saddle
+productName: Saddle
+copyright: Copyright (c) 2026 Saddle contributors
+asar: true
+directories:
+  output: dist-bundle
+files:
+  - dist/main/**/*
+  - resources/splash.html
+  - resources/error.html
+  - resources/icon.png
+extraResources:
+  - from: build/node
+    to: node
+  - from: build/dsh
+    to: dsh
+mac:
+  category: public.app-category.developer-tools
+  target:
+    - target: dmg
+      arch: [arm64]
+  identity: null
+  icon: resources/icon.png
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: resources/icon.png
+nsis:
+  oneClick: true
+  perMachine: false
+  allowToChangeInstallationDirectory: false
