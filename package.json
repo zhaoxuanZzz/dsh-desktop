@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build:main": "tsc -p tsconfig.json",
-    "test": "vitest run",
+    "design:lint": "designmd lint DESIGN.md",
+    "test": "pnpm run design:lint && vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "dev": "pnpm run build:main && electron .",
     "fetch-node": "tsx scripts/fetch-node.ts",
@@ -20,6 +21,7 @@
     "dist": "pnpm run test && pnpm run build:icon && pnpm run build:main && pnpm run fetch-node && pnpm run stage-dsh && electron-builder"
   },
   "devDependencies": {
+    "@google/design.md": "^0.4.0",
     "@types/node": "^22.13.0",
     "electron": "37.2.6",
     "electron-builder": "^26.0.12",
