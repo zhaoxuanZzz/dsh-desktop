@@ -5,16 +5,22 @@ Unofficial desktop shell for [DeepSeek Harness](https://github.com/deepseek-ai/d
 ## Develop
 
 ```sh
-git submodule update --init
-pnpm install
-# optional: build dsh once so pnpm dev can spawn apps/cli/lib/bin.js
-# CI=true skips dsh lefthook; it cannot run inside this git submodule.
-CI=true pnpm --dir vendor/deepseek-harness install && CI=true pnpm --dir vendor/deepseek-harness run build
-pnpm test
-pnpm dev
+make
 ```
 
-`pnpm dev` uses host Node (not Electron's) plus the submodule CLI. Requires Node `^22.19 || >=24`.
+Installs the submodule, pnpm deps, and dsh CLI (once), then starts Electron. Requires Node `^22.19 || >=24` and pnpm.
+
+```sh
+make install   # deps only
+make dsh       # rebuild dsh CLI
+pnpm test
+```
+
+`pnpm dev` uses host Node (not Electron's) plus the submodule CLI. `CI=true` is set in Make so dsh lefthook is skipped (it cannot run inside this git submodule).
+
+Changing files under `brand/` or `DESIGN.md` requires `make dsh` again. `pnpm dev` does not re-apply the brand.
+
+Brand: [docs/superpowers/specs/2026-08-16-saddle-brand-design.md](docs/superpowers/specs/2026-08-16-saddle-brand-design.md).
 
 ## Package
 
