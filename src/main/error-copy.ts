@@ -1,4 +1,4 @@
-import type { ErrorCode } from './dsh-process.ts'
+import type { ErrorCode } from './dsh-process.js'
 
 export function errorCopy(code: ErrorCode): { title: string; retry: 'quit' | 'reload' | 'restart' } {
   switch (code) {

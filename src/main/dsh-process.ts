@@ -1,5 +1,5 @@
 import { spawn as defaultSpawn, spawnSync, type SpawnOptions } from 'node:child_process'
-import { scanReadyOutput } from './ready-line.ts'
+import { scanReadyOutput } from './ready-line.js'
 
 export const READY_TIMEOUT_MS = 60_000
 export const STOP_GRACE_MS = 3_000
