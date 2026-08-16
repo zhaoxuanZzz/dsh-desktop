@@ -1,5 +1,7 @@
 node_modules/
 build/
 dist/
+dist-bundle/
 *.log
 .DS_Store
+resources/icon.png
