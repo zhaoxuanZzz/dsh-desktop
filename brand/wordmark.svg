@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182" height="24" viewBox="0 0 182 24" fill="none">
+  <g transform="translate(0 -2) scale(0.028)">
+    <path d="M220 620 C360 420, 664 420, 804 620" fill="none" stroke="currentColor" stroke-width="72" stroke-linecap="round"/>
+    <path d="M340 700 C512 560, 684 700, 684 700" fill="none" stroke="currentColor" stroke-width="48" stroke-linecap="round" opacity="0.65"/>
+  </g>
+  <text x="36" y="17" fill="currentColor" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="600">Saddle</text>
+</svg>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Saddle</title>
+    <style>
+      html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+      main { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+      button { font-size: 14px; padding: 8px 16px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p id="title"></p>
+      <button id="action" type="button"></button>
+    </main>
+    <script>
+      const params = new URLSearchParams(location.search)
+      const code = params.get('code') || 'launch-failed'
+      const copy = {
+        'launch-failed': { title: '无法启动 Saddle，请重装', action: '退出', kind: 'quit' },
+        timeout: { title: '启动超时', action: '退出', kind: 'quit' },
+        'load-failed': { title: '界面加载失败', action: '重试', kind: 'reload' },
+        exited: { title: 'Saddle 已退出', action: '重新启动', kind: 'restart' },
+      }[code] || { title: '无法启动 Saddle，请重装', action: '退出', kind: 'quit' }
+      document.getElementById('title').textContent = copy.title
+      const button = document.getElementById('action')
+      button.textContent = copy.action
+      button.addEventListener('click', () => {
+        if (copy.kind === 'quit') window.saddle.quit()
+        if (copy.kind === 'reload') window.saddle.reload()
+        if (copy.kind === 'restart') window.saddle.restart()
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "saddle",
+  "productName": "Saddle",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/main/index.js",
+  "license": "MIT",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "scripts": {
+    "build:main": "tsc -p tsconfig.json",
+    "design:lint": "designmd lint DESIGN.md",
+    "test": "pnpm run design:lint && vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "pnpm run build:main && electron .",
+    "fetch-node": "tsx scripts/fetch-node.ts",
+    "stage-dsh": "tsx scripts/stage-dsh.ts",
+    "build:icon": "tsx scripts/build-icon.ts",
+    "dist": "pnpm run test && pnpm run build:icon && pnpm run build:main && pnpm run fetch-node && pnpm run stage-dsh && electron-builder --publish never"
+  },
+  "devDependencies": {
+    "@google/design.md": "^0.4.0",
+    "@types/node": "^22.13.0",
+    "electron": "37.2.6",
+    "electron-builder": "^26.0.12",
+    "sharp": "^0.34.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

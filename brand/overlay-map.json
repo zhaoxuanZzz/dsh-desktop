@@ -1,0 +1,71 @@
+{
+  "replace": [
+    { "from": "brand/overlay/BrandWordmark.tsx", "to": "packages/client/ui-primitives/src/BrandWordmark.tsx" },
+    { "from": "brand/overlay/FishLogo.tsx", "to": "packages/client/ui-primitives/src/FishLogo.tsx" },
+    { "from": "brand/overlay/index.html", "to": "apps/web/index.html" },
+    { "from": "brand/overlay/manifest.webmanifest", "to": "apps/web/public/manifest.webmanifest" },
+    { "from": "brand/mark.svg", "to": "apps/web/public/favicon.svg" },
+    { "from": "brand/overlay/onboarding-copy.ts", "to": "packages/client/ui-settings-models/src/onboarding-copy.ts" },
+    { "from": "brand/overlay/GeneralSection.tsx", "to": "packages/client/ui-settings-general/src/client/GeneralSection.tsx" }
+  ],
+  "add": [
+    { "from": "brand/theme.css", "to": "packages/client/ui-theme/src/styles/saddle-theme.css" }
+  ],
+  "patch": [
+    {
+      "to": "packages/client/web/src/base.css",
+      "find": "@import '@deepseek-ai/dsh-client-ui-theme/styles/design-platform.css';",
+      "with": "@import '@deepseek-ai/dsh-client-ui-theme/styles/design-platform.css';\n@import '@deepseek-ai/dsh-client-ui-theme/styles/saddle-theme.css';"
+    },
+    {
+      "to": "packages/core/system-prompt/src/index.ts",
+      "find": "You are an AI agent powered by DeepSeek Harness.",
+      "with": "You are an AI agent running in Saddle."
+    },
+    {
+      "to": "packages/bundle/web-app/src/index.ts",
+      "find": "You are interacting with the user through the DeepSeek Harness Web GUI at ${webUrl}.",
+      "with": "You are interacting with the user through the Saddle desktop app at ${webUrl}."
+    },
+    {
+      "to": "packages/boot/app-boot/src/index.ts",
+      "find": "The DeepSeek Harness implementation checkout is at ${sourceRoot}.",
+      "with": "The runtime implementation checkout is at ${sourceRoot}."
+    },
+    {
+      "to": "packages/boot/app-boot/src/index.ts",
+      "find": "Use this checkout only to inspect or extend DSH itself.",
+      "with": "Use this checkout only to inspect or extend this runtime."
+    },
+    {
+      "to": "packages/client/ui-conversation/src/client/locales.ts",
+      "find": "'hero.headline': '探索未至之境'",
+      "with": "'hero.headline': '坐好，开始。'"
+    },
+    {
+      "to": "packages/client/ui-conversation/src/client/locales.ts",
+      "find": "'hero.headline': 'Into the Unknown'",
+      "with": "'hero.headline': 'Sit down and start.'"
+    },
+    {
+      "to": "packages/client/ui-conversation/src/client/skeleton/EmptyHero.tsx",
+      "find": "fill=\"#6187D8\"",
+      "with": "fill=\"#a8a29e\""
+    },
+    {
+      "to": "packages/client/ui-settings-general/src/client/locales.ts",
+      "find": "'general.nav': '通用设置',",
+      "with": "'general.nav': '通用设置',\n  'about': 'Saddle 基于 DeepSeek Harness.',"
+    },
+    {
+      "to": "packages/client/ui-settings-general/src/client/locales.ts",
+      "find": "'general.nav': 'General',",
+      "with": "'general.nav': 'General',\n  'about': 'Saddle is based on DeepSeek Harness.',"
+    },
+    {
+      "to": "packages/client/ui-settings-general/tests/components.client.spec.tsx",
+      "find": "const props: GeneralSectionComponentProps = { ...kit, renderSlot, close: vi.fn() }",
+      "with": "const props: GeneralSectionComponentProps = { ...kit, renderSlot, close: vi.fn(), t }"
+    }
+  ]
+}
