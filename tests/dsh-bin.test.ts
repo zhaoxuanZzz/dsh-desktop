@@ -15,7 +15,7 @@ describe('resolveDshBin', () => {
 
 describe('electron-builder extraResources', () => {
   it('does not copy dsh from a FileSet whose root is the install (drops node_modules)', () => {
-    const yml = readFileSync(join(process.cwd(), 'electron-builder.yml'), 'utf8')
+    const yml = readFileSync(join(process.cwd(), 'electron-builder.yml'), 'utf8').replaceAll('\r\n', '\n')
     expect(yml).not.toMatch(/from:\s*build\/dsh\b/)
     expect(yml).toMatch(/from:\s*build\n\s+to:\s*\./)
   })
