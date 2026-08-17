@@ -12,8 +12,11 @@ files:
 extraResources:
   - from: build/node
     to: node
-  - from: build/dsh
-    to: dsh
+  # FileSet skips a copy-root named node_modules; nest dsh under build/ so deps ship.
+  - from: build
+    to: .
+    filter:
+      - dsh/**
 mac:
   category: public.app-category.developer-tools
   target:

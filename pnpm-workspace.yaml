@@ -3,3 +3,5 @@ allowBuilds:
   electron-winstaller: true
   esbuild: true
   sharp: true
+overrides:
+  "@electron/get": "^4.0.2"

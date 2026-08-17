@@ -18,7 +18,7 @@
     "fetch-node": "tsx scripts/fetch-node.ts",
     "stage-dsh": "tsx scripts/stage-dsh.ts",
     "build:icon": "tsx scripts/build-icon.ts",
-    "dist": "pnpm run test && pnpm run build:icon && pnpm run build:main && pnpm run fetch-node && pnpm run stage-dsh && electron-builder"
+    "dist": "pnpm run test && pnpm run build:icon && pnpm run build:main && pnpm run fetch-node && pnpm run stage-dsh && electron-builder --publish never"
   },
   "devDependencies": {
     "@google/design.md": "^0.4.0",

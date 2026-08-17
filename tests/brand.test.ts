@@ -2,11 +2,32 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { pnpmCommand } from '../scripts/pnpm.ts'
+
+describe('pnpmCommand', () => {
+  it('uses node plus npm_execpath when set', () => {
+    const { file, prefix, shell } = pnpmCommand({ npm_execpath: '/tmp/pnpm.mjs' }, 'win32')
+    expect(file).toBe(process.execPath)
+    expect(prefix).toEqual(['/tmp/pnpm.mjs'])
+    expect(shell).toBeUndefined()
+  })
+
+  it('falls back to pnpm.cmd with a shell on Windows', () => {
+    const env = { ...process.env }
+    delete env.npm_execpath
+    const { file, prefix, shell } = pnpmCommand(env, 'win32')
+    expect(file).toBe('pnpm.cmd')
+    expect(prefix).toEqual([])
+    expect(shell).toBe(true)
+  })
+})
 
 describe('DESIGN.md', () => {
   it('lints with zero errors', () => {
-    const r = spawnSync('pnpm', ['exec', 'designmd', 'lint', 'DESIGN.md'], {
+    const { file, prefix, shell } = pnpmCommand()
+    const r = spawnSync(file, [...prefix, 'exec', 'designmd', 'lint', 'DESIGN.md'], {
       encoding: 'utf8',
+      shell,
     })
     expect(r.status, r.stderr || r.stdout).toBe(0)
     const report = JSON.parse(r.stdout) as { summary: { errors: number } }

@@ -2,6 +2,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { execFileSync } from 'node:child_process'
+import { execPnpm } from './pnpm.ts'
 
 export interface OverlayReplace { from: string; to: string }
 export interface OverlayAdd { from: string; to: string }
@@ -126,7 +127,7 @@ function main(): void {
   }
   if (cmd === 'with-build') {
     runWithBrandOverlay({ repoRoot, vendorRoot, map }, () => {
-      execFileSync('pnpm', ['run', 'build'], {
+      execPnpm(['run', 'build'], {
         cwd: vendorRoot,
         stdio: 'inherit',
         env: { ...process.env, CI: 'true' },

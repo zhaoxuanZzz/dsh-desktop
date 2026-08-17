@@ -20,6 +20,7 @@ function gitInit(): string {
   execFileSync('git', ['init'], { cwd: dir })
   execFileSync('git', ['config', 'user.email', 't@t'], { cwd: dir })
   execFileSync('git', ['config', 'user.name', 't'], { cwd: dir })
+  execFileSync('git', ['config', 'core.autocrlf', 'false'], { cwd: dir })
   mkdirSync(join(dir, 'packages'), { recursive: true })
   writeFileSync(join(dir, 'keep.txt'), 'orig\n')
   writeFileSync(join(dir, 'packages/base.css'), "@import 'a.css';\n")
