@@ -81,24 +81,6 @@ jobs:
           shopt -s nullglob
           files=(saddle-mac-arm64/*.dmg saddle-win-x64/*.exe)
           test ${#files[@]} -gt 0
-          gh release create "$GITHUB_REF_NAME" "${files[@]}" \
-            --repo "$GITHUB_REPOSITORY" \
-            --title "Saddle ${GITHUB_REF_NAME#v}" \
-            --notes "$(cat <<'EOF'
-First public release of Saddle, an unofficial desktop app for DeepSeek Harness.
-
-- macOS 13+ Apple Silicon: `.dmg`
-- Windows 10+ x64: `.exe`
-
-Builds are unsigned. macOS: right-click → Open. Windows: SmartScreen → More info → Run anyway.
-
----
-
-Saddle 首个公开版本，DeepSeek Harness 的非官方桌面应用。
-
-- macOS 13+ Apple Silicon：`.dmg`
-- Windows 10+ x64：`.exe`
-
-安装包未签名。macOS 右键打开；Windows 在 SmartScreen 选择仍要运行。
-EOF
-)"
+          ver="${GITHUB_REF_NAME#v}"
+          notes="Saddle ${ver}: unofficial desktop app for DeepSeek Harness. macOS 13+ Apple Silicon (.dmg), Windows 10+ x64 (.exe). Unsigned: macOS right-click Open; Windows SmartScreen Run anyway. / Saddle ${ver}：DeepSeek Harness 的非官方桌面应用。未签名：macOS 右键打开，Windows SmartScreen 仍要运行。"
+          gh release create "$GITHUB_REF_NAME" "${files[@]}" --repo "$GITHUB_REPOSITORY" --title "Saddle ${ver}" --notes "$notes"
